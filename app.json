@@ -1,16 +1,19 @@
 {
   "expo": {
-    "name": "ndf",
-    "slug": "ndf",
-    "version": "1.0.0",
+    "name": "numathefarm",
+    "slug": "numathefarm",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#4fad52"
     },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
     },
@@ -18,10 +21,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.nautiluscode.numathefarm"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "e6a495d7-d0be-435f-8396-2bf6c09dfb08"
+      }
     }
   }
 }
