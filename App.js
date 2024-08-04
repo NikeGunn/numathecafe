@@ -9,7 +9,9 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 const App = () => {
   const [vegetables, setVegetables] = useState('');
-  const [otherItems, setOtherItems] = useState('');
+  const [groceries, setGroceries] = useState('');
+  const [meat, setMeat] = useState('');
+  const [others, setOthers] = useState('');
   const [shared, setShared] = useState(false);
   const [animationStarted, setAnimationStarted] = useState(false);
 
@@ -94,7 +96,7 @@ const App = () => {
         </head>
         <body>
           <div class="container">
-            <h1>NUMA THE CAFE</h1>
+            <h1>HOTEL BANJARA INN</h1>
             <h2>Vegetables</h2>
             <ul class="item-list">
               ${vegetables.split(',').map(veg => {
@@ -102,15 +104,29 @@ const App = () => {
                 return `<li class="item"><span class="itemName">${name}</span><span class="itemQuantity">${quantity || 'N/A'}</span></li>`;
               }).join('')}
             </ul>
-            <h2>Other Items</h2>
+            <h2>Groceries</h2>
             <ul class="item-list">
-              ${otherItems.split(',').map(item => {
-                const [name, quantity] = item.split(':').map(part => part.trim());
+              ${groceries.split(',').map(grocery => {
+                const [name, quantity] = grocery.split(':').map(part => part.trim());
+                return `<li class="item"><span class="itemName">${name}</span><span class="itemQuantity">${quantity || 'N/A'}</span></li>`;
+              }).join('')}
+            </ul>
+            <h2>Meat</h2>
+            <ul class="item-list">
+              ${meat.split(',').map(meatItem => {
+                const [name, quantity] = meatItem.split(':').map(part => part.trim());
+                return `<li class="item"><span class="itemName">${name}</span><span class="itemQuantity">${quantity || 'N/A'}</span></li>`;
+              }).join('')}
+            </ul>
+            <h2>Others</h2>
+            <ul class="item-list">
+              ${others.split(',').map(other => {
+                const [name, quantity] = other.split(':').map(part => part.trim());
                 return `<li class="item"><span class="itemName">${name}</span><span class="itemQuantity">${quantity || 'N/A'}</span></li>`;
               }).join('')}
             </ul>
             <div class="total">
-              Total Items: ${vegetables.split(',').length + otherItems.split(',').length}
+              Total Items: ${vegetables.split(',').length + groceries.split(',').length + meat.split(',').length + others.split(',').length}
             </div>
           </div>
         </body>
@@ -133,7 +149,7 @@ const App = () => {
   return (
     <SafeAreaProvider>
       <SafeAreaView style={styles.safeArea}>
-        <StatusBar barStyle="light-content" backgroundColor="#4CAF50" />
+        <StatusBar barStyle="dark-content" backgroundColor="#f5f5f5" />
         <KeyboardAvoidingView behavior="padding" style={styles.keyboardAvoidingView}>
           <ScrollView contentContainerStyle={styles.scrollViewContainer}>
             <Animatable.View
@@ -162,7 +178,7 @@ const App = () => {
                 <Card.Title 
                   title="Input Order Details" 
                   titleStyle={styles.cardTitle}
-                  subtitle="Please enter vegetables and other items with quantities"
+                  subtitle="Please enter vegetables, groceries, meat, and other items with quantities"
                   subtitleStyle={styles.cardSubtitle}
                 />
                 <Card.Content>
@@ -187,13 +203,45 @@ const App = () => {
                     delay={200}
                   >
                     <TextInput
-                      label="Other Items (item:quantity, comma separated)"
-                      value={otherItems}
-                      onChangeText={setOtherItems}
+                      label="Groceries (item:quantity, comma separated)"
+                      value={groceries}
+                      onChangeText={setGroceries}
                       style={styles.input}
                       mode="outlined"
                       theme={{ colors: { primary: '#4CAF50', underlineColor: 'transparent' } }}
-                      left={<TextInput.Icon name="food" color="#4CAF50" />}
+                      left={<TextInput.Icon name="food-apple" color="#4CAF50" />}
+                      placeholder="e.g., Rice:2, Sugar:1"
+                    />
+                  </Animatable.View>
+                  <Animatable.View
+                    animation={animationStarted ? "fadeInRight" : undefined}
+                    duration={1000}
+                    delay={400}
+                  >
+                    <TextInput
+                      label="Meat (item:quantity, comma separated)"
+                      value={meat}
+                      onChangeText={setMeat}
+                      style={styles.input}
+                      mode="outlined"
+                      theme={{ colors: { primary: '#4CAF50', underlineColor: 'transparent' } }}
+                      left={<TextInput.Icon name="cow" color="#4CAF50" />}
+                      placeholder="e.g., Chicken:1, Mutton:2"
+                    />
+                  </Animatable.View>
+                  <Animatable.View
+                    animation={animationStarted ? "fadeInLeft" : undefined}
+                    duration={1000}
+                    delay={600}
+                  >
+                    <TextInput
+                      label="Others (item:quantity, comma separated)"
+                      value={others}
+                      onChangeText={setOthers}
+                      style={styles.input}
+                      mode="outlined"
+                      theme={{ colors: { primary: '#4CAF50', underlineColor: 'transparent' } }}
+                      left={<TextInput.Icon name="dots-horizontal" color="#4CAF50" />}
                       placeholder="e.g., Salt:2, Oil:1"
                     />
                   </Animatable.View>
@@ -202,7 +250,7 @@ const App = () => {
                   <Animatable.View
                     animation={animationStarted ? "fadeInUp" : undefined}
                     duration={1000}
-                    delay={400}
+                    delay={800}
                   >
                     <Button 
                       mode="contained" 
@@ -251,7 +299,7 @@ const styles = StyleSheet.create({
   iconContainer: {
     marginBottom: 20,
     marginTop: 20,
-    alignItems: 'center', // Center the icon horizontally
+    alignItems: 'center',
   },
   card: {
     width: '100%',
@@ -308,3 +356,4 @@ const styles = StyleSheet.create({
 });
 
 export default App;
+
