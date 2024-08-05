@@ -11,7 +11,7 @@ const PDFShareButton = ({ onPress }) => (
     <Button 
       mode="contained" 
       onPress={onPress} 
-      style={{ backgroundColor: '#4CAF50', borderRadius: 8, width: '100%' }}
+      style={{ backgroundColor: '#0965ef', borderRadius: 8, width: '100%' }}
       labelStyle={{ fontSize: 16 }}
       icon="share-variant"
     >

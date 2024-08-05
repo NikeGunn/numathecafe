@@ -9,7 +9,7 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#4fad52"
+      "backgroundColor": "#0965ef"
     },
     "ios": {
       "supportsTablet": true,
@@ -29,6 +29,14 @@
       "eas": {
         "projectId": "e6a495d7-d0be-435f-8396-2bf6c09dfb08"
       }
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0,
+      "checkAutomatically": "ON_ERROR_RECOVERY",
+      "url": "https://u.expo.dev/e6a495d7-d0be-435f-8396-2bf6c09dfb08"
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
     }
   }
 }

@@ -14,8 +14,8 @@ const InputField = ({ label, value, onChange, icon, placeholder, delay = 0 }) =>
       onChangeText={onChange}
       style={{ width: '100%', marginBottom: 15, backgroundColor: '#fff', borderRadius: 8, paddingHorizontal: 10 }}
       mode="outlined"
-      theme={{ colors: { primary: '#4CAF50', underlineColor: 'transparent' } }}
-      left={<RNTextInput.Icon name={icon} color="#4CAF50" />}
+      theme={{ colors: { primary: '#0965ef', underlineColor: 'transparent' } }}
+      left={<RNTextInput.Icon name={icon} color="#0965ef" />}
       placeholder={placeholder}
     />
   </Animatable.View>
