@@ -26,5 +26,3 @@ Numa The Cafe is a mobile application designed for chefs to manage their ingredi
 ### Prerequisites
 
 Ensure you have Node.js and npm installed on your system. You can download them from [Node.js](https://nodejs.org/).
-
-### Setup
