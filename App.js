@@ -67,39 +67,57 @@ const App = () => {
     </ul>
   `;
 
-  const generateHTMLContent = () => `
-    <html>
-      <head>
-        <style>
-          body { font-family: Arial, sans-serif; margin: 0; padding: 10px; width: 227px; font-size: 12px; color: #333; background-color: #f5f5f5; }
-          .container { background-color: #fff; border-radius: 8px; padding: 15px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); }
-          h1 { font-size: 16px; text-align: center; margin-bottom: 10px; font-weight: bold; color: #0965ef; border-bottom: 2px solid #0965ef; padding-bottom: 5px; }
-          h2 { font-size: 14px; margin: 10px 0; font-weight: bold; color: #0965ef; }
-          .item-list { list-style-type: none; padding: 0; margin: 0; }
-          .item { margin: 5px 0; padding: 8px 0; border-bottom: 1px solid #ddd; display: flex; justify-content: space-between; align-items: center; }
-          .itemName { flex: 1; }
-          .itemQuantity { text-align: right; white-space: nowrap; font-weight: bold; }
-          .total { margin-top: 15px; font-size: 14px; font-weight: bold; text-align: right; color: #0965ef; border-top: 2px solid #0965ef; padding-top: 10px; }
-        </style>
-      </head>
-      <body>
-        <div class="container">
-          <h1>HOTEL BANJARA INN</h1>
-          ${vegetables ? generateSection('Vegetables', vegetables) : ''}
-          ${groceries ? generateSection('Groceries', groceries) : ''}
-          ${meat ? generateSection('Meat', meat) : ''}
-          ${others ? generateSection('Others', others) : ''}
-          ${bar ? generateSection('Bar', bar) : ''}
-          ${cafe ? generateSection('Cafe', cafe) : ''}
-          <div class="total">
-            Total Items: ${[vegetables, groceries, meat, others, bar, cafe]
-              .map(items => countItems(items))
-              .reduce((acc, count) => acc + count, 0)}
+  const generateHTMLContent = () => {
+    const now = new Date();
+    const date = now.toLocaleDateString();
+    const time = now.toLocaleTimeString();
+    const day = now.toLocaleDateString('en-US', { weekday: 'long' });
+  
+    return `
+      <html>
+        <head>
+          <style>
+            body { font-family: Arial, sans-serif; margin: 0; padding: 10px; width: 227px; font-size: 12px; color: #333; background-color: #f5f5f5; }
+            .container { background-color: #fff; border-radius: 8px; padding: 15px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); }
+            h1 { font-size: 16px; text-align: center; margin-bottom: 10px; font-weight: bold; color: #0965ef; }
+            .date-time-container { display: flex; justify-content: space-between; margin-bottom: 5px; }
+            .date, .time { color: #666; }
+            .day { text-align: center; margin-bottom: 10px; color: #666; }
+            .blue-border { border-bottom: 2px solid #0965ef; padding-bottom: 5px; margin-bottom: 10px; }
+            h2 { font-size: 14px; margin: 10px 0; font-weight: bold; color: #0965ef; }
+            .item-list { list-style-type: none; padding: 0; margin: 0; }
+            .item { margin: 5px 0; padding: 8px 0; border-bottom: 1px solid #ddd; display: flex; justify-content: space-between; align-items: center; }
+            .itemName { flex: 1; }
+            .itemQuantity { text-align: right; white-space: nowrap; font-weight: bold; }
+            .total { margin-top: 15px; font-size: 14px; font-weight: bold; text-align: right; color: #0965ef; border-top: 2px solid #0965ef; padding-top: 10px; }
+          </style>
+        </head>
+        <body>
+          <div class="container">
+            <h1>HOTEL BANJARA INN</h1>
+            <div class="date-time-container">
+              <div class="date">Date: ${date}</div>
+              <div class="time">Time: ${time}</div>
+            </div>
+            <div class="day">${day}</div>
+            <div class="blue-border"></div>
+            ${vegetables ? generateSection('Vegetables', vegetables) : ''}
+            ${groceries ? generateSection('Groceries', groceries) : ''}
+            ${meat ? generateSection('Meat', meat) : ''}
+            ${others ? generateSection('Others', others) : ''}
+            ${bar ? generateSection('Bar', bar) : ''}
+            ${cafe ? generateSection('Cafe', cafe) : ''}
+            <div class="total">
+              Total Items: ${[vegetables, groceries, meat, others, bar, cafe]
+                .map(items => countItems(items))
+                .reduce((acc, count) => acc + count, 0)}
+            </div>
           </div>
-        </div>
-      </body>
-    </html>
-  `;
+        </body>
+      </html>
+    `;
+  };
+  
 
   const handleGenerateAndSharePDF = async () => {
     try {
@@ -183,8 +201,8 @@ const App = () => {
                     label="Bar (item:quantity, comma separated)"
                     value={bar}
                     onChange={setBar}
-                    icon="glass-wine"
-                    placeholder="e.g., Whiskey:2, Vodka:1"
+                    icon="glass-cocktail"
+                    placeholder="e.g., Whiskey:1, Vodka:2"
                     delay={600}
                   />
                   <InputField
