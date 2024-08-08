@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { TextInput as RNTextInput } from 'react-native-paper';
 import * as Animatable from 'react-native-animatable';
 
-const InputField = ({ label, value, onChange, icon, placeholder, delay = 0 }) => (
+const InputField = memo(({ label, value, onChange, icon, placeholder, delay = 0 }) => (
   <Animatable.View
     animation="fadeInRight"
     duration={1000}
@@ -19,6 +19,6 @@ const InputField = ({ label, value, onChange, icon, placeholder, delay = 0 }) =>
       placeholder={placeholder}
     />
   </Animatable.View>
-);
+));
 
 export default InputField;
